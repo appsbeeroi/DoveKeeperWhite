@@ -24,7 +24,7 @@ struct AppTabView: View {
                 SalesView()
                     .tag(AppTabViewState.sales)
                 
-                SettingsView()
+                SettingsView(isShowTabBar: $isShowTabBar)
                     .tag(AppTabViewState.settings)
             }
             
