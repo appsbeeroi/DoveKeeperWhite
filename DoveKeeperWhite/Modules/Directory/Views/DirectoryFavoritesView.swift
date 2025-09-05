@@ -37,13 +37,7 @@ struct DirectoryFavoritesView: View {
                 .foregroundStyle(.baseSecondBlack)
             
             HStack {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "arrowshape.turn.up.backward.fill")
-                        .font(.system(size: 30, weight: .medium))
-                        .foregroundStyle(.baseYellow)
-                }
+                BaseBackButton()
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
@@ -74,3 +68,5 @@ struct DirectoryFavoritesView: View {
         }
     }
 }
+
+

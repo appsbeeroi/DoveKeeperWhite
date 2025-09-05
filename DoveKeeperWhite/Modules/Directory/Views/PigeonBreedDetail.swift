@@ -34,13 +34,7 @@ struct PigeonBreedDetail: View {
     
     private var navigation: some View {
         HStack {
-            Button {
-                dismiss()
-            } label: {
-                Image(systemName: "arrowshape.turn.up.backward.fill")
-                    .font(.system(size: 30, weight: .medium))
-                    .foregroundStyle(.baseYellow)
-            }
+            BaseBackButton()
             
             Spacer()
             
