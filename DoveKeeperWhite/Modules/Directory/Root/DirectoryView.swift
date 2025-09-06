@@ -78,6 +78,9 @@ struct DirectoryView: View {
                 }
             }
             .padding(.horizontal, 35)
+            
+            Color.clear
+                .frame(height: 100)
         }
     }
 }

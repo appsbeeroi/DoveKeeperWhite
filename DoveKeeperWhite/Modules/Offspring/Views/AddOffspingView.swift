@@ -1,13 +1,12 @@
 import SwiftUI
 
-struct AddPigeonView: View {
-    
-    @ObservedObject var viewModel: PigeonsViewModel
+struct AddOffspingView: View {
     
     @State var pigeon: Pigeon
     
+    @State private var birtDate = Date()
     @State private var isShowImagePicker = false
-    @State private var isShowDetailView = false
+    @State private var isShowParentListView = false
     
     @FocusState private var isFocused: Bool
     
@@ -34,11 +33,17 @@ struct AddPigeonView: View {
             }
          }
         .navigationBarBackButtonHidden()
+        .navigationDestination(isPresented: $isShowParentListView) {
+            OffspingParentsListView(pigeon: pigeon)
+        }
+        .onAppear {
+            pigeon.status = .young
+        }
         .sheet(isPresented: $isShowImagePicker) {
             ImagePicker(selectedImage: $pigeon.image)
         }
-        .navigationDestination(isPresented: $isShowDetailView) {
-            PigeonDetailView(viewModel: viewModel, pigeon: pigeon)
+        .onChange(of: birtDate) { date in
+            pigeon.birthDate = date
         }
     }
     
@@ -46,15 +51,15 @@ struct AddPigeonView: View {
         HStack {
             BaseBackButton()
             
-            Text("Add pigeon")
+            Text("Add offsping")
                 .font(.quicksand(size: 25, .bold))
                 .foregroundStyle(.baseSecondBlack)
                 .padding(.horizontal, 35)
             
             Button {
-                isShowDetailView = true
+                isShowParentListView = true
             } label: {
-                Image(pigeon.isUnlock ? .Images.Buttons.complete : .Images.Buttons.completeInactive)
+                Image(pigeon.image != nil && pigeon.birthDate != nil && pigeon.name != "" ? .Images.Buttons.complete : .Images.Buttons.completeInactive)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 44, height: 44)
@@ -66,10 +71,9 @@ struct AddPigeonView: View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 12) {
                 image
-                nameInput
-                ageInput
-                statusSection
-                notesInput
+                name
+                datePicker
+                chickSection
             }
             .padding(.top, 24)
             .padding(.horizontal, 35)
@@ -105,56 +109,46 @@ struct AddPigeonView: View {
         }
     }
     
-    private var nameInput: some View {
+    private var datePicker: some View {
+        VStack(spacing: 2) {
+            Text("Birth date")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .font(.quicksand(size: 15, .bold))
+                .foregroundStyle(.baseGray)
+            
+            DatePicker("", selection: $birtDate,  in: ...Date(), displayedComponents: [.date])
+                .labelsHidden()
+                .datePickerStyle(.wheel)
+        }
+        .padding()
+        .background(.white)
+        .cornerRadius(18)
+    }
+    
+    private var name: some View {
         VStack(spacing: 2) {
             Text("Name")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .font(.quicksand(size: 15, .bold))
-                .foregroundStyle(.baseLightGray)
+                .foregroundStyle(.baseGray)
             
             BaseTextField(text: $pigeon.name, isFocused: $isFocused)
         }
     }
     
-    private var ageInput: some View {
+    private var chickSection: some View {
         VStack(spacing: 2) {
-            Text("Age")
+            Text("Chick count")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .font(.quicksand(size: 15, .bold))
-                .foregroundStyle(.baseLightGray)
+                .foregroundStyle(.baseGray)
             
-            BaseTextField(text: $pigeon.age, keyboard: .numberPad, isFocused: $isFocused)
-        }
-    }
-    
-    private var statusSection: some View {
-        VStack(spacing: 2) {
-            Text("Status")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .font(.quicksand(size: 15, .bold))
-                .foregroundStyle(.baseLightGray)
-            
-            HStack(spacing: 6) {
-                ForEach(PigeonStatus.allCases) { status in
-                    PigeonStatusCellView(status: status, selectedStatus: $pigeon.status)
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-        }
-    }
-    
-    private var notesInput: some View {
-        VStack(spacing: 2) {
-            Text("Notes")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .font(.quicksand(size: 15, .bold))
-                .foregroundStyle(.baseLightGray)
-            
-            AdaptableTextField(text: $pigeon.notes, isFocused: $isFocused)
+            BaseTextField(text: $pigeon.chickCount, keyboard: .numberPad, isFocused: $isFocused)
         }
     }
 }
 
 #Preview {
-    AddPigeonView(viewModel: PigeonsViewModel(), pigeon: Pigeon(isReal: false))
+    AddOffspingView(pigeon: Pigeon(isReal: false))
 }
+

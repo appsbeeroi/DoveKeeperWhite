@@ -1,6 +1,6 @@
 import UIKit
 
-final class PigeonsViewModel: ObservableObject {
+final class OffspingViewModel: ObservableObject {
     
     private let database = LocalDatabaseService.shared
     private let imageManager = ImageManager.shared
@@ -19,7 +19,14 @@ final class PigeonsViewModel: ObservableObject {
                 for object in objects {
                     group.addTask { @RealmActor in
                         guard let image = await self.imageManager.retrieve(fileNamed: object.id.uuidString) else { return nil }
-                        let model = Pigeon(from: object, and: image)
+                        var model = Pigeon(from: object, and: image)
+                        
+                        for parentObject in object.parent {
+                            guard let image = await self.imageManager.retrieve(fileNamed: parentObject.id.uuidString) else { return nil }
+                            let parentModel = Pigeon(from: parentObject, and: image)
+                            
+                            model.parent.append(parentModel)
+                        }
                         
                         return model
                     }
@@ -45,8 +52,19 @@ final class PigeonsViewModel: ObservableObject {
             guard let self,
                   let image = pigeon.image else { return }
             
-            guard let imagePath = await imageManager.store(image: image, for: pigeon.id) else { return }
-            let object = PigeonObject(from: pigeon, and: imagePath)
+            guard let imagePath = await imageManager.store(image: image, for: pigeon.id),
+                  pigeon.parent.count == 2 else { return }
+            
+            let firstParent = pigeon.parent[0]
+            let secondParent = pigeon.parent[1]
+            
+            guard let firstParentImagePath = await imageManager.store(image: firstParent.image ?? UIImage(), for: firstParent.id),
+                  let secondParentImagePath = await imageManager.store(image: secondParent.image ?? UIImage(), for: secondParent.id) else { return }
+            
+            let object = PigeonObject(from: pigeon, and: imagePath, parents: [
+                (firstParent, imagePath: firstParentImagePath),
+                (secondParent, imagePath: secondParentImagePath)
+            ])
             
             await database.insert(object)
             
@@ -70,9 +88,10 @@ final class PigeonsViewModel: ObservableObject {
             await database.remove(PigeonObject.self, primaryKey: pigeon.id)
             
             await MainActor.run {
-                guard let index = self.pigeons.firstIndex(where: { $0.id == pigeon.id }) else { return }
+                if let index = self.pigeons.firstIndex(where: { $0.id == pigeon.id }) {
+                    self.pigeons.remove(at: index)
+                }
                 
-                self.pigeons.remove(at: index)
                 self.isCloseActiveNavigation = true
             }
         }

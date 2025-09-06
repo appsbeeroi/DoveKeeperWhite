@@ -9,7 +9,22 @@
 /* Begin PBXBuildFile section */
 		7E87BD732E68056800B0DC01 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7E87BD722E68056800B0DC01 /* RealmSwift */; };
 		7E87BD762E68057D00B0DC01 /* SwipeActions in Frameworks */ = {isa = PBXBuildFile; productRef = 7E87BD752E68057D00B0DC01 /* SwipeActions */; };
+		7EA341E02E6C13DB006C79CC /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 7E87BD722E68056800B0DC01 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7EA341E12E6C13DB006C79CC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7EA341E02E6C13DB006C79CC /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7E87B6E32E67406D00B0DC01 /* DoveKeeperWhite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoveKeeperWhite.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +90,7 @@
 				7E87B6DF2E67406D00B0DC01 /* Sources */,
 				7E87B6E02E67406D00B0DC01 /* Frameworks */,
 				7E87B6E12E67406D00B0DC01 /* Resources */,
+				7EA341E12E6C13DB006C79CC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

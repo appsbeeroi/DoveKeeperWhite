@@ -18,7 +18,7 @@ struct AppTabView: View {
                 PigeonsView(isShowTabBar: $isShowTabBar)
                     .tag(AppTabViewState.pigeons)
                 
-                OffspringView()
+                OffspringView(isShowTabBar: $isShowTabBar)
                     .tag(AppTabViewState.offspring)
                 
                 SalesView()

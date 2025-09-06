@@ -1,6 +1,6 @@
 import Foundation
 
-struct Care: Identifiable {
+struct Care: Identifiable, Equatable {
     let id: UUID
     var type: CareType?
     var date: Date

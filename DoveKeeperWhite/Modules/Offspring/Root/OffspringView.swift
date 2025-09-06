@@ -1,13 +1,14 @@
 import SwiftUI
+
+struct OffspringView: View {
     
-struct PigeonsView: View {
-    
-    @StateObject private var viewModel = PigeonsViewModel()
+    @StateObject private var viewModel = OffspingViewModel()
     
     @Binding var isShowTabBar: Bool
     
     @State private var pigeonToEdit: Pigeon?
-    @State private var isShowAddView = false
+    @State private var isShowAddOffspingView = false
+    @State private var isShowDetailView = false
     
     var body: some View {
         NavigationStack {
@@ -18,7 +19,9 @@ struct PigeonsView: View {
                 VStack(spacing: 8) {
                     navigation
                     
-                    if viewModel.pigeons.isEmpty {
+                    let filteredPigeons = viewModel.pigeons.filter { $0.status == .young && $0.birthDate != nil }
+                    
+                    if filteredPigeons.isEmpty {
                         stumb
                     } else {
                         pigeonsList
@@ -27,27 +30,33 @@ struct PigeonsView: View {
                 .frame(maxHeight: .infinity, alignment: .top)
                 .padding(.top, 30)
             }
-            .navigationDestination(isPresented: $isShowAddView) {
-                AddPigeonView(viewModel: viewModel, pigeon: pigeonToEdit ?? Pigeon(isReal: true))
+            .navigationDestination(isPresented: $isShowAddOffspingView) {
+                AddOffspingView(pigeon: pigeonToEdit ?? Pigeon(isReal: true))
+            }
+            .navigationDestination(isPresented: $isShowDetailView) {
+                OffspingDetailView(pigeon: pigeonToEdit ?? Pigeon(isReal: true))
             }
             .onAppear {
-                isShowTabBar = true
                 viewModel.loadPigeons()
+                isShowTabBar = true
             }
             .onChange(of: viewModel.isCloseActiveNavigation) { isClose in
                 if isClose {
-                    isShowAddView = false
+                    isShowAddOffspingView = false
+                    isShowDetailView = false
                     viewModel.isCloseActiveNavigation = false
                 }
             }
         }
+        .environmentObject(viewModel)
     }
     
     private var navigation: some View {
-        Text("Pigeon Guide")
+        Text("Procreation\nrecord")
             .font(.quicksand(size: 35, .bold))
             .foregroundStyle(.baseSecondBlack)
             .padding(.horizontal, 35)
+            .multilineTextAlignment(.center)
     }
     
     private var stumb: some View {
@@ -59,12 +68,13 @@ struct PigeonsView: View {
             addButton
         }
         .frame(maxHeight: .infinity)
+        .padding(.bottom, 40)
     }
     
     private var addButton: some View {
         Button {
             isShowTabBar = false
-            isShowAddView = true
+            isShowAddOffspingView = true
         } label: {
             RoundedRectangle(cornerRadius: 12)
                 .frame(width: 60, height: 60)
@@ -79,20 +89,20 @@ struct PigeonsView: View {
     
     private var pigeonsList: some View {
         ScrollView(showsIndicators: false) {
-            VStack(spacing: 16) {
-                LazyVStack(spacing: 10) {
-                    ForEach(viewModel.pigeons) { pigeon in
-                        PigeonCellView(pigeon: pigeon) {
-                            pigeonToEdit = pigeon
-                            isShowTabBar = false
-                            isShowAddView = true
-                        } editAction: {
-                            pigeonToEdit = pigeon
-                            isShowTabBar = false
-                            isShowAddView = true
-                        } removeAction: {
-                            viewModel.remove(pigeon)
-                        }
+            LazyVStack(spacing: 12) {
+                let filteredPigeons = viewModel.pigeons.filter { $0.status == .young && $0.birthDate != nil }
+
+                ForEach(filteredPigeons) { pigeon in
+                    OffspingPigeonCellView(pigeon: pigeon) {
+                        pigeonToEdit = pigeon
+                        isShowTabBar = false
+                        isShowDetailView = true
+                    } editAction: {
+                        pigeonToEdit = pigeon
+                        isShowTabBar = false
+                        isShowAddOffspingView = true
+                    } removeAction: {
+                        viewModel.remove(pigeon)
                     }
                 }
                 
@@ -105,9 +115,8 @@ struct PigeonsView: View {
         }
     }
 }
-    
+
 #Preview {
-    NavigationStack {
-        PigeonsView(isShowTabBar: .constant(false))
-    }
+    OffspringView(isShowTabBar: .constant(false))
 }
+
