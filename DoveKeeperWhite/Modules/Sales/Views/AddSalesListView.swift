@@ -1,12 +1,12 @@
 import SwiftUI
 
-struct OffspingParentsListView: View {
+struct AddSalesListView: View {
     
-    @EnvironmentObject var viewModel: OffspingViewModel
+    @EnvironmentObject var viewModel: SalesViewModel
     
-    @State var pigeon: Pigeon
+    @State var sale: Sale
     
-    @State private var parents: [Pigeon] = []
+    @State private var selectedPigeons: [Pigeon] = []
     @State private var isShowDetailView = false
     
     var body: some View {
@@ -23,10 +23,13 @@ struct OffspingParentsListView: View {
         }
         .navigationBarBackButtonHidden()
         .navigationDestination(isPresented: $isShowDetailView) {
-            OffspingDetailView(pigeon: pigeon)
+            AddSaleView(sale: sale)
         }
-        .onChange(of: parents) { parents in
-            pigeon.parent = parents
+        .onAppear {
+            selectedPigeons = sale.pigeons
+        }
+        .onChange(of: selectedPigeons) { pigeons in
+            sale.pigeons = pigeons
         }
     }
     
@@ -34,34 +37,34 @@ struct OffspingParentsListView: View {
         HStack {
             BaseBackButton()
             
-            Text("Add offsping")
+            Text("Add sale")
+                .frame(maxWidth: .infinity)
                 .font(.quicksand(size: 25, .bold))
                 .foregroundStyle(.baseSecondBlack)
-                .padding(.horizontal, 35)
             
             Button {
                 isShowDetailView = true
             } label: {
-                Image(parents.count == 2 ? .Images.Buttons.complete : .Images.Buttons.completeInactive)
+                Image(sale.pigeons.isEmpty ? .Images.Buttons.completeInactive : .Images.Buttons.complete)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 44, height: 44)
             }
+            .disabled(sale.pigeons.isEmpty)
         }
+        .padding(.horizontal, 35)
     }
     
     private var content: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 12) {
-                Text("Parent")
+                Text("Pigeons")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.quicksand(size: 20, .bold))
                     .foregroundStyle(.baseSecondBlack)
                 
-                let parent = viewModel.pigeons.filter { $0.id != pigeon.id }
-                
-                ForEach(parent) { pigeon in
-                    OffspingParentListCellView(pigeon: pigeon, isSelectable: true, isDisable: true, parents: $parents)
+                ForEach(viewModel.pigeons.filter { !$0.isSold }) { pigeon in
+                    OffspingParentListCellView(pigeon: pigeon, isSelectable: true, isDisable: false, parents: $selectedPigeons)
                 }
             }
             .padding(.top, 24)
@@ -69,9 +72,3 @@ struct OffspingParentsListView: View {
         }
     }
 }
-
-#Preview {
-    OffspingParentsListView(pigeon: Pigeon(isReal: true))
-        .environmentObject(OffspingViewModel())
-}
-

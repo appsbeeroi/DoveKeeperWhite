@@ -4,6 +4,7 @@ struct OffspingParentListCellView: View {
     
     let pigeon: Pigeon
     let isSelectable: Bool
+    let isDisable: Bool
     
     @Binding var parents: [Pigeon]
     
@@ -66,8 +67,8 @@ struct OffspingParentListCellView: View {
             .padding(10)
             .background(.white)
             .cornerRadius(18)
-            .opacity(parents.count == 2 && !parents.contains(where: { $0.id == pigeon.id }) ? 0.6 : 1)
+            .opacity(parents.count == 2 && !parents.contains(where: { $0.id == pigeon.id }) && isDisable ? 0.6 : 1)
         }
-        .disabled(parents.count == 2 && !parents.contains(where: { $0.id == pigeon.id }))
+        .disabled(isDisable && parents.count == 2 && !parents.contains(where: { $0.id == pigeon.id }))
     }
 }

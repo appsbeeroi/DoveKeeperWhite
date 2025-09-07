@@ -138,7 +138,8 @@ struct OffspingDetailView: View {
                 .foregroundStyle(.baseSecondBlack)
             
             ForEach(pigeon.parent) { pigeon in
-                OffspingParentListCellView(pigeon: pigeon, isSelectable: false, parents: .constant([]))
+                OffspingParentListCellView(pigeon: pigeon, isSelectable: false, isDisable: true, parents: .constant([]))
+                    .disabled(true)
             }
         }
     }

@@ -12,6 +12,7 @@ final class PigeonObject: Object {
     @Persisted var parent = List<PigeonObject>()
     @Persisted var birthDate: Date?
     @Persisted var chickCount: String
+    @Persisted var isSold: Bool
     
     convenience init(from model: Pigeon, and imagePath: String, parents: [(Pigeon, imagePath: String)]? = nil) {
         self.init()
@@ -23,6 +24,7 @@ final class PigeonObject: Object {
         self.imagePath = imagePath
         self.birthDate = model.birthDate
         self.chickCount = model.chickCount
+        self.isSold = model.isSold
         
         model.cares.forEach {
             self.cares.append(CareObject(from: $0))

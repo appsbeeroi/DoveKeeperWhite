@@ -39,6 +39,7 @@ struct OffspringView: View {
             .onAppear {
                 viewModel.loadPigeons()
                 isShowTabBar = true
+                pigeonToEdit = nil 
             }
             .onChange(of: viewModel.isCloseActiveNavigation) { isClose in
                 if isClose {

@@ -21,7 +21,7 @@ struct AppTabView: View {
                 OffspringView(isShowTabBar: $isShowTabBar)
                     .tag(AppTabViewState.offspring)
                 
-                SalesView()
+                SalesView(isShowTabBar: $isShowTabBar)
                     .tag(AppTabViewState.sales)
                 
                 SettingsView(isShowTabBar: $isShowTabBar)

@@ -11,6 +11,7 @@ struct Pigeon: Identifiable, Equatable {
     var parent: [Pigeon]
     var birthDate: Date?
     var chickCount: String
+    var isSold: Bool
     
     var isUnlock: Bool {
         name != "" && age != "" && status != nil && image != nil
@@ -26,9 +27,10 @@ struct Pigeon: Identifiable, Equatable {
         self.parent = isReal ? [] : [Pigeon(isReal: false)]
         self.birthDate = isReal ? nil : Date()
         self.chickCount = isReal ? "" : "1"
+        self.isSold = false
     }
     
-    init(from object: PigeonObject, and image: UIImage) {
+    init(from object: PigeonObject, and image: UIImage?) {
         self.id = object.id
         self.name = object.name
         self.age = object.age
@@ -39,6 +41,7 @@ struct Pigeon: Identifiable, Equatable {
         self.parent = []
         self.birthDate = object.birthDate
         self.chickCount = object.chickCount
+        self.isSold = object.isSold
     }
 }
 

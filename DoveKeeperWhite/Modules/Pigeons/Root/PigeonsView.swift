@@ -33,6 +33,7 @@ struct PigeonsView: View {
             .onAppear {
                 isShowTabBar = true
                 viewModel.loadPigeons()
+                pigeonToEdit = nil
             }
             .onChange(of: viewModel.isCloseActiveNavigation) { isClose in
                 if isClose {
