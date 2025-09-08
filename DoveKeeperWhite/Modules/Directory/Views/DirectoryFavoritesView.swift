@@ -62,6 +62,7 @@ struct DirectoryFavoritesView: View {
                         favoritesPigeons.remove(at: index)
                         likeAction(breed)
                     }
+                    .disabled(true)
                 }
             }
             .padding(.horizontal, 35)

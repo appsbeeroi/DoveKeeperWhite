@@ -65,7 +65,7 @@ struct AppTabView: View {
         }
         .padding(.top, 12)
         .padding(.horizontal)
-        .padding(.bottom, 50)
+        .padding(.bottom, UIScreen.isSe ? 10 : 50)
         .background(.white)
         .cornerRadius(20, corners: [.topLeft, .topRight])
         .opacity(isShowTabBar ? 1 : 0)

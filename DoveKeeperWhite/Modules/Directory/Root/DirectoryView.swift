@@ -22,7 +22,7 @@ struct DirectoryView: View {
                 }
                 .frame(maxHeight: .infinity, alignment: .top)
                 .padding(.top, 30)
-                .padding(.bottom, 100)
+                .padding(.bottom, UIScreen.isSe ? 50 : 100)
                 .animation(.easeInOut, value: viewModel.pigeons)
             }
             .onAppear {

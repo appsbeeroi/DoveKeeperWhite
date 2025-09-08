@@ -15,13 +15,13 @@ enum SettingsCellType: Identifiable, CaseIterable {
                 "Privacy Policy"
         }
     }
-    #warning("юрлы")
+    
     var urlString: String {
         switch self {
             case .aboutDeveloper:
-                ""
+                "https://sites.google.com/view/dovekeeperwhite/home"
             case .privacy:
-                ""
+                "https://sites.google.com/view/dovekeeperwhite/privacy-policy"
             default:
                 ""
         }

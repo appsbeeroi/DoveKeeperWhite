@@ -99,6 +99,7 @@ struct SalesView: View {
             salesList
         }
         .padding(.horizontal, 35)
+        .padding(.bottom, UIScreen.isSe ? 50 : 100)
     }
     
     private var salesPeriodPicker: some View {
