@@ -1,95 +1,70 @@
 import Foundation
-import RealmSwift
+import SwiftUI
 
 final class LocalDatabaseService: ObservableObject {
-
+    
     static let shared = LocalDatabaseService()
     
-    private var database: Realm?
+    private let defaults = UserDefaults.standard
+    private let encoder = JSONEncoder()
+    private let decoder = JSONDecoder()
     
-    private init() {
-        Task {
-            await initializeRealm()
-        }
-    }
-    
-    @RealmActor
-    private func initializeRealm() async {
-        do {
-            database = try await Realm(actor: RealmActor.shared)
-        } catch {
-            print("❌ Realm initialization failed: \(error.localizedDescription)")
-        }
-    }
+    private init() {}
 }
 
 // MARK: - Public API
 extension LocalDatabaseService {
     
-    @RealmActor
-    func insert<T: Object>(_ item: T) async {
-        guard let database else {
-            print("❌ Realm not ready")
-            return
+    func insert<T: Codable & Identifiable>(_ item: T) async where T.ID == UUID {
+        let key = storageKey(for: T.self)
+        var items = await fetchAll(T.self)
+        
+        if let index = items.firstIndex(where: { $0.id == item.id }) {
+            items[index] = item
+        } else {
+            items.append(item)
         }
+        
+        save(items, forKey: key)
+    }
+    
+    func fetchAll<T: Codable>(_ type: T.Type = T.self) async -> [T] {
+        let key = storageKey(for: T.self)
+        guard let data = defaults.data(forKey: key) else { return [] }
         
         do {
-            try database.write {
-                database.add(item, update: .all)
-            }
+            return try decoder.decode([T].self, from: data)
         } catch {
-            print("❌ Failed to insert item: \(error.localizedDescription)")
-        }
-    }
-
-    @RealmActor
-    func fetchAll<T: Object>() async -> [T] {
-        while database == nil {
-            await Task.yield()
-        }
-        
-        guard let database else {
-            print("❌ Realm not ready")
+            print("❌ Failed to decode \(T.self): \(error.localizedDescription)")
             return []
         }
-        
-        return Array(database.objects(T.self))
     }
     
-    @RealmActor
-    func remove<T: Object>(_ type: T.Type, primaryKey: UUID) async {
-        guard let database else {
-            print("❌ Realm not ready")
-            return
-        }
-        
-        guard let target = database.object(ofType: type, forPrimaryKey: primaryKey) else {
-            print("⚠️ No item found for key: \(primaryKey)")
-            return
-        }
-        
-        do {
-            try database.write {
-                database.delete(target)
-            }
-        } catch {
-            print("❌ Failed to remove item: \(error.localizedDescription)")
-        }
+    func remove<T: Codable & Identifiable>(_ type: T.Type, primaryKey: UUID) async where T.ID == UUID {
+        var items = await fetchAll(T.self)
+        items.removeAll { $0.id == primaryKey }
+        let key = storageKey(for: T.self)
+        save(items, forKey: key)
     }
     
-    @RealmActor
-    func clearAll() async {
-        guard let database else {
-            print("❌ Realm not ready")
-            return
-        }
-        
+    func clearAll<T: Codable>(_ type: T.Type) async {
+        let key = storageKey(for: T.self)
+        defaults.removeObject(forKey: key)
+    }
+}
+
+// MARK: - Helpers
+private extension LocalDatabaseService {
+    func storageKey<T>(for type: T.Type) -> String {
+        "LocalDB_\(String(describing: type))"
+    }
+    
+    func save<T: Codable>(_ items: [T], forKey key: String) {
         do {
-            try database.write {
-                database.deleteAll()
-            }
+            let data = try encoder.encode(items)
+            defaults.set(data, forKey: key)
         } catch {
-            print("❌ Failed to clear database: \(error.localizedDescription)")
+            print("❌ Failed to encode \(T.self): \(error.localizedDescription)")
         }
     }
 }

@@ -1,6 +1,4 @@
-import RealmSwift
-
-enum CareType: String, Identifiable, CaseIterable, PersistableEnum {
+enum CareType: String, Identifiable, CaseIterable, Codable {
     var id: Self { self }
     
     case feeding

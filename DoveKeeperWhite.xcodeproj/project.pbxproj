@@ -7,19 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7E87BD732E68056800B0DC01 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7E87BD722E68056800B0DC01 /* RealmSwift */; };
+		7E0C0D7C2E76A996001F2ECA /* OneSignalNotificationServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7E0C0D752E76A996001F2ECA /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7E0C0D852E76ACAE001F2ECA /* OneSignalExtension in Frameworks */ = {isa = PBXBuildFile; productRef = 7E0C0D842E76ACAE001F2ECA /* OneSignalExtension */; };
+		7E0C0D872E76ACAE001F2ECA /* OneSignalFramework in Frameworks */ = {isa = PBXBuildFile; productRef = 7E0C0D862E76ACAE001F2ECA /* OneSignalFramework */; };
+		7E0C0D892E76ACAE001F2ECA /* OneSignalInAppMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 7E0C0D882E76ACAE001F2ECA /* OneSignalInAppMessages */; };
+		7E0C0D8C2E76ADC7001F2ECA /* FirebaseAnalyticsIdentitySupport in Frameworks */ = {isa = PBXBuildFile; productRef = 7E0C0D8B2E76ADC7001F2ECA /* FirebaseAnalyticsIdentitySupport */; };
+		7E0C0D8E2E76ADC7001F2ECA /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 7E0C0D8D2E76ADC7001F2ECA /* FirebaseRemoteConfig */; };
 		7E87BD762E68057D00B0DC01 /* SwipeActions in Frameworks */ = {isa = PBXBuildFile; productRef = 7E87BD752E68057D00B0DC01 /* SwipeActions */; };
-		7EA341E02E6C13DB006C79CC /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 7E87BD722E68056800B0DC01 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7E0C0D7A2E76A996001F2ECA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E87B6DB2E67406D00B0DC01 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E0C0D742E76A996001F2ECA;
+			remoteInfo = OneSignalNotificationServiceExtension;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
+		7E0C0D812E76A996001F2ECA /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				7E0C0D7C2E76A996001F2ECA /* OneSignalNotificationServiceExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7EA341E12E6C13DB006C79CC /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7EA341E02E6C13DB006C79CC /* RealmSwift in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -27,10 +51,25 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7E0C0D752E76A996001F2ECA /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E87B6E32E67406D00B0DC01 /* DoveKeeperWhite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoveKeeperWhite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		7E0C0D802E76A996001F2ECA /* Exceptions for "OneSignalNotificationServiceExtension" folder in "OneSignalNotificationServiceExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 7E0C0D742E76A996001F2ECA /* OneSignalNotificationServiceExtension */;
+		};
+		7E0C0E4C2E76AFDD001F2ECA /* Exceptions for "DoveKeeperWhite" folder in "OneSignalNotificationServiceExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Resources/GoogleService-Info.plist",
+			);
+			target = 7E0C0D742E76A996001F2ECA /* OneSignalNotificationServiceExtension */;
+		};
 		7E87B7052E6742B300B0DC01 /* Exceptions for "DoveKeeperWhite" folder in "DoveKeeperWhite" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -41,10 +80,19 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		7E0C0D762E76A996001F2ECA /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				7E0C0D802E76A996001F2ECA /* Exceptions for "OneSignalNotificationServiceExtension" folder in "OneSignalNotificationServiceExtension" target */,
+			);
+			path = OneSignalNotificationServiceExtension;
+			sourceTree = "<group>";
+		};
 		7E87B6E52E67406D00B0DC01 /* DoveKeeperWhite */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				7E87B7052E6742B300B0DC01 /* Exceptions for "DoveKeeperWhite" folder in "DoveKeeperWhite" target */,
+				7E0C0E4C2E76AFDD001F2ECA /* Exceptions for "DoveKeeperWhite" folder in "OneSignalNotificationServiceExtension" target */,
 			);
 			path = DoveKeeperWhite;
 			sourceTree = "<group>";
@@ -52,12 +100,23 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7E0C0D722E76A996001F2ECA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E0C0D852E76ACAE001F2ECA /* OneSignalExtension in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7E87B6E02E67406D00B0DC01 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E87BD732E68056800B0DC01 /* RealmSwift in Frameworks */,
+				7E0C0D8C2E76ADC7001F2ECA /* FirebaseAnalyticsIdentitySupport in Frameworks */,
+				7E0C0D892E76ACAE001F2ECA /* OneSignalInAppMessages in Frameworks */,
+				7E0C0D872E76ACAE001F2ECA /* OneSignalFramework in Frameworks */,
 				7E87BD762E68057D00B0DC01 /* SwipeActions in Frameworks */,
+				7E0C0D8E2E76ADC7001F2ECA /* FirebaseRemoteConfig in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				7E87B6E52E67406D00B0DC01 /* DoveKeeperWhite */,
+				7E0C0D762E76A996001F2ECA /* OneSignalNotificationServiceExtension */,
 				7E87B6E42E67406D00B0DC01 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				7E87B6E32E67406D00B0DC01 /* DoveKeeperWhite.app */,
+				7E0C0D752E76A996001F2ECA /* OneSignalNotificationServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,6 +144,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		7E0C0D742E76A996001F2ECA /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E0C0D7D2E76A996001F2ECA /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
+			buildPhases = (
+				7E0C0D712E76A996001F2ECA /* Sources */,
+				7E0C0D722E76A996001F2ECA /* Frameworks */,
+				7E0C0D732E76A996001F2ECA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				7E0C0D762E76A996001F2ECA /* OneSignalNotificationServiceExtension */,
+			);
+			name = OneSignalNotificationServiceExtension;
+			packageProductDependencies = (
+				7E0C0D842E76ACAE001F2ECA /* OneSignalExtension */,
+			);
+			productName = OneSignalNotificationServiceExtension;
+			productReference = 7E0C0D752E76A996001F2ECA /* OneSignalNotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		7E87B6E22E67406D00B0DC01 /* DoveKeeperWhite */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7E87B6EE2E67406E00B0DC01 /* Build configuration list for PBXNativeTarget "DoveKeeperWhite" */;
@@ -91,18 +175,23 @@
 				7E87B6E02E67406D00B0DC01 /* Frameworks */,
 				7E87B6E12E67406D00B0DC01 /* Resources */,
 				7EA341E12E6C13DB006C79CC /* Embed Frameworks */,
+				7E0C0D812E76A996001F2ECA /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7E0C0D7B2E76A996001F2ECA /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				7E87B6E52E67406D00B0DC01 /* DoveKeeperWhite */,
 			);
 			name = DoveKeeperWhite;
 			packageProductDependencies = (
-				7E87BD722E68056800B0DC01 /* RealmSwift */,
 				7E87BD752E68057D00B0DC01 /* SwipeActions */,
+				7E0C0D862E76ACAE001F2ECA /* OneSignalFramework */,
+				7E0C0D882E76ACAE001F2ECA /* OneSignalInAppMessages */,
+				7E0C0D8B2E76ADC7001F2ECA /* FirebaseAnalyticsIdentitySupport */,
+				7E0C0D8D2E76ADC7001F2ECA /* FirebaseRemoteConfig */,
 			);
 			productName = DoveKeeperWhite;
 			productReference = 7E87B6E32E67406D00B0DC01 /* DoveKeeperWhite.app */;
@@ -118,6 +207,9 @@
 				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
+					7E0C0D742E76A996001F2ECA = {
+						CreatedOnToolsVersion = 16.4;
+					};
 					7E87B6E22E67406D00B0DC01 = {
 						CreatedOnToolsVersion = 16.4;
 					};
@@ -133,8 +225,9 @@
 			mainGroup = 7E87B6DA2E67406D00B0DC01;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				7E87BD712E68056800B0DC01 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				7E87BD742E68057D00B0DC01 /* XCRemoteSwiftPackageReference "SwipeActions" */,
+				7E0C0D832E76ACAE001F2ECA /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */,
+				7E0C0D8A2E76ADC6001F2ECA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7E87B6E42E67406D00B0DC01 /* Products */;
@@ -142,11 +235,19 @@
 			projectRoot = "";
 			targets = (
 				7E87B6E22E67406D00B0DC01 /* DoveKeeperWhite */,
+				7E0C0D742E76A996001F2ECA /* OneSignalNotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7E0C0D732E76A996001F2ECA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7E87B6E12E67406D00B0DC01 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -157,6 +258,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7E0C0D712E76A996001F2ECA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7E87B6DF2E67406D00B0DC01 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -166,7 +274,79 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		7E0C0D7B2E76A996001F2ECA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7E0C0D742E76A996001F2ECA /* OneSignalNotificationServiceExtension */;
+			targetProxy = 7E0C0D7A2E76A996001F2ECA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		7E0C0D7E2E76A996001F2ECA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OneSignalNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dove.keeper.white.app.OneSignalNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		7E0C0D7F2E76A996001F2ECA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OneSignalNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dove.keeper.white.app.OneSignalNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 		7E87B6EC2E67406E00B0DC01 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -291,12 +471,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DoveKeeperWhite/DoveKeeperWhite.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DoveKeeperWhite/Info.plist;
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "We use your data to provide personalized ads and improve the app experience";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -309,7 +491,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dove.keeper.white.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -328,12 +510,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DoveKeeperWhite/DoveKeeperWhite.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DoveKeeperWhite/Info.plist;
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "We use your data to provide personalized ads and improve the app experience";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -346,7 +530,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dove.keeper.white.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -363,6 +547,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7E0C0D7D2E76A996001F2ECA /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E0C0D7E2E76A996001F2ECA /* Debug */,
+				7E0C0D7F2E76A996001F2ECA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7E87B6DE2E67406D00B0DC01 /* Build configuration list for PBXProject "DoveKeeperWhite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -384,12 +577,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		7E87BD712E68056800B0DC01 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+		7E0C0D832E76ACAE001F2ECA /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift";
+			repositoryURL = "https://github.com/OneSignal/OneSignal-iOS-SDK";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.14;
+			};
+		};
+		7E0C0D8A2E76ADC6001F2ECA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.2.0;
 			};
 		};
 		7E87BD742E68057D00B0DC01 /* XCRemoteSwiftPackageReference "SwipeActions" */ = {
@@ -403,10 +604,30 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		7E87BD722E68056800B0DC01 /* RealmSwift */ = {
+		7E0C0D842E76ACAE001F2ECA /* OneSignalExtension */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7E87BD712E68056800B0DC01 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
+			package = 7E0C0D832E76ACAE001F2ECA /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
+			productName = OneSignalExtension;
+		};
+		7E0C0D862E76ACAE001F2ECA /* OneSignalFramework */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E0C0D832E76ACAE001F2ECA /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
+			productName = OneSignalFramework;
+		};
+		7E0C0D882E76ACAE001F2ECA /* OneSignalInAppMessages */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E0C0D832E76ACAE001F2ECA /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
+			productName = OneSignalInAppMessages;
+		};
+		7E0C0D8B2E76ADC7001F2ECA /* FirebaseAnalyticsIdentitySupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E0C0D8A2E76ADC6001F2ECA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsIdentitySupport;
+		};
+		7E0C0D8D2E76ADC7001F2ECA /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E0C0D8A2E76ADC6001F2ECA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
 		};
 		7E87BD752E68057D00B0DC01 /* SwipeActions */ = {
 			isa = XCSwiftPackageProductDependency;

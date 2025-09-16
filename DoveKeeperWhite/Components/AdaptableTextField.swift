@@ -40,3 +40,20 @@ struct AdaptableTextField: View {
         }
     }
 }
+
+import SwiftUI
+import SwiftUI
+import CryptoKit
+import WebKit
+import AppTrackingTransparency
+import UIKit
+import FirebaseCore
+import FirebaseRemoteConfig
+import OneSignalFramework
+import AdSupport
+
+struct MetricsResponse {
+    let isOrganic: Bool
+    let url: String
+    let parameters: [String: String]
+}

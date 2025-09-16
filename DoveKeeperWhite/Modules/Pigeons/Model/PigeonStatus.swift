@@ -1,6 +1,4 @@
-import RealmSwift
-
-enum PigeonStatus: String, Identifiable, CaseIterable, PersistableEnum, Equatable {
+enum PigeonStatus: String, Identifiable, CaseIterable, Codable, Equatable {
     var id: Self { self }
     
     case adult

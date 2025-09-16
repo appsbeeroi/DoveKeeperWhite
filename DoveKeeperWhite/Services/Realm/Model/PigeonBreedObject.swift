@@ -1,12 +1,10 @@
-import RealmSwift
 import Foundation
 
-final class PigeonBreedObject: Object {
-    @Persisted(primaryKey: true) var id: UUID
-    @Persisted var isFavorite: Bool
+struct PigeonBreedObject: Codable, Identifiable {
+    var id: UUID
+    var isFavorite: Bool
     
-    convenience init(from model: PigeonBreed) {
-        self.init()
+    init(from model: PigeonBreed) {
         self.id = model.uuid
         self.isFavorite = model.isFavorite
     }

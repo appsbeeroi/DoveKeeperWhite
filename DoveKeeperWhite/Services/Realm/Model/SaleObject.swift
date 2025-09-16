@@ -1,20 +1,15 @@
 import Foundation
-import RealmSwift
 
-final class SaleObject: Object {
-    @Persisted(primaryKey: true) var id: UUID
-    @Persisted var pigeons = List<PigeonObject>()
-    @Persisted var date: Date
-    @Persisted var price: String
+struct SaleObject: Codable, Identifiable {
+    var id: UUID
+    var pigeons: [PigeonObject]
+    var date: Date
+    var price: String
     
-    convenience init(from model: Sale) {
-        self.init()
+    init(from model: Sale) {
         self.id = model.id
         self.date = model.date
         self.price = model.price
-        
-        model.pigeons.forEach {
-            self.pigeons.append(PigeonObject(from: $0, and: ""))
-        }
+        self.pigeons = model.pigeons.map { PigeonObject(from: $0, and: "")}
     }
 }
